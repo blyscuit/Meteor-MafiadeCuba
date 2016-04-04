@@ -9,4 +9,3 @@ Router.route('/:accessCode', function () {
   Session.set("urlAccessCode", accessCode);
   Session.set("currentView", "joinGame");
 });
-//
