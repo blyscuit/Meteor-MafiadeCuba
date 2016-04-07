@@ -1,4 +1,5 @@
-Router.route('/', function () {
+if(Meteor.isClient){
+  Router.route('/', function () {
   this.render('main');
   Session.set("currentView", "startMenu");
 });
@@ -9,4 +10,4 @@ Router.route('/:accessCode', function () {
   Session.set("urlAccessCode", accessCode);
   Session.set("currentView", "joinGame");
 });
-//
+}
