@@ -511,13 +511,13 @@ Template.lobby.helpers({
       return null;
     }
 
-    var players = Players.find({'gameID': game._id}, {'sort': {'createdAt': 1}}).fetch();
-
-    players.forEach(function(player){
-      if (player._id === currentPlayer._id){
-        player.isCurrent = true;
-      }
-    });
+    // var players = Players.find({'gameID': game._id}, {'sort': {'createdAt': 1}}).fetch();
+    //
+    // players.forEach(function(player){
+    //   if (player._id === currentPlayer._id){
+    //     player.isCurrent = true;
+    //   }
+    // });
 
     return players;
   },
