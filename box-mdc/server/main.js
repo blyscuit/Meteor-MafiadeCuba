@@ -1,13 +1,13 @@
 function cleanUpGamesAndPlayers(){
-  var cutOff = moment().subtract(2, 'hours').toDate().getTime();
-
-  var numGamesRemoved = Games.remove({
-    createdAt: {$lt: cutOff}
-  });
-
-  var numPlayersRemoved = Players.remove({
-    createdAt: {$lt: cutOff}
-  });
+  // var cutOff = moment(new Date()).subtract(2, 'hours').toDate().getTime();
+  //
+  // var numGamesRemoved = Games.remove({
+  //   createdAt: {$lt: cutOff}
+  // });
+  //
+  // var numPlayersRemoved = Players.remove({
+  //   createdAt: {$lt: cutOff}
+  // });
 }
 
 function getRandomLocation(){
