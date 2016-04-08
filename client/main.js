@@ -538,13 +538,13 @@ Template.lobby.helpers({
       return null;
     }
 
-    // var players = Players.find({'gameID': game._id}, {'sort': {'createdAt': 1}}).fetch();
-    //
-    // players.forEach(function(player){
-    //   if (player._id === currentPlayer._id){
-    //     player.isCurrent = true;
-    //   }
-    // });
+    var players = Players.find({'gameID': game._id}, {'sort': {'createdAt': 1}}).fetch();
+
+    players.forEach(function(player){
+      if (player._id === currentPlayer._id){
+        player.isCurrent = true;
+      }
+    });
 
     return players;
   },
@@ -620,9 +620,11 @@ Template.gameView.helpers({
       return null;
     }
 
-    var players = Players.find({
-      'gameID': game._id
-    });
+    // var players = Players.find({
+    //   'gameID': game._id
+    // });
+    var players = Players.find({'gameID': game._id}, {'sort': {'createdAt': 1}}).fetch();
+
 
     return players;
   },
@@ -660,11 +662,11 @@ Template.gameView.helpers({
     var game = getCurrentGame();
     if(game.gem == 0)return false;
     return true;
-  }
+  },
   isBagEmpty: function(){
     var game = getCurrentGame();
     if(game.bag == true && game.turnOrder == 1)return true;
-    return true;
+    return false;
   }
 });
 
