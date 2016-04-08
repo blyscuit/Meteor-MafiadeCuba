@@ -125,6 +125,7 @@ function generateNewGame(){
     joker:0,
     chats:ar,
     playerOrder:empty,
+    bag:true,
     turnOrder:0,
     openPocket:false,
   };
@@ -234,6 +235,32 @@ function takeRoleCoin(roleIn){
   }
 
   gameGoNextPlayer(game);
+
+}
+function hideRoleCoin(roleIn){
+  var game = getCurrentGame();
+  if(roleIn=='loyal'){
+    if(game.loyal){
+      Games.update(game._id, {
+        $set: { loyal: (game.loyal-1),bag:false },
+      });
+    }
+  }
+  if(roleIn=='cia'){
+    if(game.cia){
+      Games.update(game._id, {
+        $set: { cia: (game.cia-1),bag:false },
+      });
+    }
+  }
+  if(roleIn=='driver'){
+    if(game.driver){
+      Games.update(game._id, {
+        $set: { driver: (game.driver-1),bag:false },
+      });
+    }
+  }
+
 
 }
 function takeGem(amount){
@@ -634,6 +661,11 @@ Template.gameView.helpers({
     if(game.gem == 0)return false;
     return true;
   }
+  isBagEmpty: function(){
+    var game = getCurrentGame();
+    if(game.bag == true && game.turnOrder == 1)return true;
+    return true;
+  }
 });
 
 
@@ -686,6 +718,18 @@ Template.gameView.events({
   'click .btn-driver': function (event) {
     var game = getCurrentGame();
     takeRoleCoin('driver');
+  },
+  'click .btn-hide-loyal': function (event) {
+    var game = getCurrentGame();
+    hideRoleCoin('loyal');
+  },
+  'click .btn-hide-cia': function (event) {
+    var game = getCurrentGame();
+    hideRoleCoin('cia');
+  },
+  'click .btn-hide-driver': function (event) {
+    var game = getCurrentGame();
+    hideRoleCoin('driver');
   },
   'click .btn-gem': function (event) {
     var game = getCurrentGame();
